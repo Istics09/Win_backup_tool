@@ -156,6 +156,8 @@ foreach ($f in $files) {
     catch {
         $msg = if ($_.Exception.InnerException) { $_.Exception.InnerException.Message } else { $_.Exception.Message }
         $errors.Add("$($f.Src)  ->  $msg")
+        Write-Host "WARNING: skipped $($f.Src)" -ForegroundColor Yellow
+        Write-Host "         $msg" -ForegroundColor DarkYellow
     }
     $doneBytes += $f.Size
 }
